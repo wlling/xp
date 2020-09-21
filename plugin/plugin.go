@@ -27,7 +27,7 @@ type Plugin interface {
 	// 停止插件
 	Stop()
 	// 返回插件当前的运行状态
-	Status()
+	Status() StatusPlugin
 	// 新增初始化方法，在插件工厂返回实例前调用
 	Init()
 }
@@ -60,5 +60,5 @@ type Output interface {
 // 插件配置
 type Config struct {
 	Name        string
-	PluginTypes []PluginType
+	PluginTypes PluginType
 }
