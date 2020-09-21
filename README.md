@@ -40,3 +40,12 @@ xp is my name,but the project is same like ansible playbook auto ops
     * output
         * 输出结果
         * 返回状态
+
+# 功能模块
+
+- [ ] yaml解析
+- [ ] 动态环境变量
+- [ ] with_items迭代器
+- [ ] CLI命令行工具
+- [ ] 功能文件夹，提供：files、hosts、env等特殊目录模块
+- [ ] roles ansible模块
