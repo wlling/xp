@@ -1,13 +1,15 @@
-package plugin
+package module
 
 import (
 	"fmt"
 	"reflect"
+
+	. "github.com/devopsxp/xp/plugin"
 )
 
-// 在输入插件映射关系中加入kafka，用于通过反射创建input对象
 func init() {
-	inputNames["kafka"] = reflect.TypeOf(KafkaInput{})
+	// 在输入插件映射关系中加入kafka，用于通过反射创建input对象
+	AddInput("kafka", reflect.TypeOf(KafkaInput{}))
 }
 
 // 原始struct

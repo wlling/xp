@@ -3,6 +3,7 @@ package tests
 import (
 	"testing"
 
+	_ "github.com/devopsxp/xp/module"
 	"github.com/devopsxp/xp/pipeline"
 )
 
