@@ -18,8 +18,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/devopsxp/xp/pipeline"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // testCmd represents the test command
@@ -34,7 +34,20 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("test called")
-		fmt.Printf("%v %v\n", viper.GetStringSlice("stage"), viper.AllSettings())
+		// fmt.Printf("%v %v\n", viper.GetStringSlice("stage"), viper.AllSettings())
+
+		// 根据yaml解析shell等模块，进行动态匹配，进行顺序执行
+		config := pipeline.DefaultPipeConfig("shell").
+			WithCheckName("ssh").
+			WithInputName("localyaml").
+			WithFilterName("shell").
+			WithOutputName("console")
+
+		p := pipeline.Of(*config)
+		p.Init()
+		p.Start()
+		p.Exec()
+		p.Stop()
 	},
 }
 

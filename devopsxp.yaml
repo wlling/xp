@@ -14,6 +14,9 @@ config:
       - ip a
       - pwd
       - uname -a
+  - test:
+      name: 查看docker信息
+      shell: docker info
 
   # one:
   #   copy: src={{ base_dir }}/bin/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755

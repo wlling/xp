@@ -54,6 +54,11 @@ func (b *builder) WithStatus(status StatusType) *builder {
 	return b
 }
 
+func (b *builder) WithItemInterface(data map[string]interface{}) *builder {
+	b.msg.Data.Items = data
+	return b
+}
+
 func (b *builder) WithItems(key string, value interface{}) *builder {
 	b.once.Do(func() {
 		b.msg.Data.Items = make(map[string]interface{})

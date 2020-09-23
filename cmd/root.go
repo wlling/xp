@@ -21,7 +21,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	homedir "github.com/mitchellh/go-homedir"
+	_ "github.com/devopsxp/xp/module"
 	"github.com/spf13/viper"
 )
 
@@ -58,7 +58,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.devopsxp.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/devopsxp.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -71,16 +71,16 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Find home directory.
-		home, err := homedir.Dir()
+		// 获取项目的执行路径
+		home, err := os.Getwd()
 		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
+			panic(err)
 		}
 
 		// Search config in home directory with name ".devopsxp" (without extension).
-		viper.AddConfigPath(home)
-		viper.SetConfigName(".devopsxp")
+		viper.AddConfigPath(home)       // 设置读取文件的路径
+		viper.SetConfigName("devopsxp") // 设置读取的文件名
+		viper.SetConfigType("yaml")     // 设置文件的类型
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
@@ -88,5 +88,7 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	} else {
+		fmt.Printf("Using config file error: %s\n", err.Error())
 	}
 }
