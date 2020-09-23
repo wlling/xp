@@ -50,3 +50,8 @@ xp is my name,but the project is same like ansible playbook auto ops
 - [ ] 功能文件夹，提供：files、hosts、env等特殊目录模块
 - [ ] roles ansible模块
 - [ ] module man模块说明文档
+
+# Useage
+
+> go build
+> ./xp test --config ./.devopsxp.yaml

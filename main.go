@@ -1,31 +1,22 @@
+/*
+Copyright © 2020 NAME lixueping <382023823@qq.com>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 package main
 
-import (
-	"fmt"
-	"os"
+import "github.com/devopsxp/xp/cmd"
 
-	"github.com/spf13/viper"
-)
-
-// TODO: CLI+Viper
 func main() {
-	// 获取项目的执行路径
-	path, err := os.Getwd()
-	if err != nil {
-		panic(err)
-	}
-
-	config := viper.New()
-
-	config.AddConfigPath(path)      // 设置读取文件的路径
-	config.SetConfigName("example") // 设置读取的文件名
-	config.SetConfigType("yaml")    // 设置文件的类型
-
-	// 尝试进行配置读取
-	if err := config.ReadInConfig(); err != nil {
-		panic(err)
-	}
-
-	// 打印文件读取的内容
-	fmt.Println(config.AllSettings())
+	cmd.Execute()
 }
